@@ -1,9 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const getenv = require('getenv');
 const { Toolkit } = require('actions-toolkit');
 
-const permissions = ['none', 'read', 'write', 'admin'];
 const tools = new Toolkit();
 
 try {
