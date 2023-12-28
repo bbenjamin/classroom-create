@@ -12,14 +12,14 @@ try {
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
   const permissionPayload =  tools.github.repos.getCollaboratorPermissionLevel({
     ...tools.context.repo,
     username: tools.context.actor
   });
-  core.setOutput('permission payload', JSON.stringify(permissionPayload));
+  // Get the JSON webhook payload for the event that triggered the workflow
+  const payload = JSON.stringify({...github.context.payload, hoobastank: permissionPayload}, undefined, 2)
+  console.log(`The event payload?: ${payload}`);
+
 
 } catch (error) {
   core.setFailed(error.message);
