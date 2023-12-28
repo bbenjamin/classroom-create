@@ -28906,6 +28906,22 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 2260:
+/***/ ((module) => {
+
+module.exports = eval("require")("actions-toolkit");
+
+
+/***/ }),
+
+/***/ 7268:
+/***/ ((module) => {
+
+module.exports = eval("require")("getenv");
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -30792,6 +30808,11 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(4259);
 const github = __nccwpck_require__(2935);
+const getenv = __nccwpck_require__(7268);
+const { Toolkit } = __nccwpck_require__(2260);
+
+const permissions = (/* unused pure expression or super */ null && (['none', 'read', 'write', 'admin']));
+const tools = new Toolkit();
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -30799,9 +30820,15 @@ try {
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
+  const permissionPayload =  tools.github.repos.getCollaboratorPermissionLevel({
+    ...tools.context.repo,
+    username: tools.context.actor
+  });
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  const payload = JSON.stringify({...github.context.payload, hoobastank: permissionPayload}, undefined, 2)
+  console.log(`The event payload?: ${payload}`);
+
+
 } catch (error) {
   core.setFailed(error.message);
 }
