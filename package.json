@@ -19,6 +19,8 @@
   "homepage": "https://github.com/bbenjamin/classroom-create#readme",
   "dependencies": {
     "@actions/core": "^1.10.1",
-    "@actions/github": "^6.0.0"
+    "@actions/github": "^6.0.0",
+    "actions-toolkit": "^6.0.1",
+    "getenv": "^1.0.0"
   }
 }
