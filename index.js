@@ -15,13 +15,11 @@ try {
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
-  (async () => {
-    const permissionPayload = await tools.github.repos.getCollaboratorPermissionLevel({
-      ...tools.context.repo,
-      username: tools.context.actor
-    });
-    core.setOutput('permission payload', JSON.stringify(permissionPayload));
-  })();
+  const permissionPayload =  tools.github.repos.getCollaboratorPermissionLevel({
+    ...tools.context.repo,
+    username: tools.context.actor
+  });
+  core.setOutput('permission payload', JSON.stringify(permissionPayload));
 
 } catch (error) {
   core.setFailed(error.message);
