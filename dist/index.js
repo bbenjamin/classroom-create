@@ -48019,8 +48019,10 @@ try {
   //   username: tools.context.actor
   // });
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github, undefined, 2)
-  console.log(`The entire github context forrrr: ${payload}`);
+  // const payload = JSON.stringify(github, undefined, 2)
+  const payload = JSON.stringify({token, numbers,owner,repository,branches, prefix, suffix}, undefined, 2)
+  console.log(`The entire github context forrrr the varia les: ${payload}`);
+
 
 
 } catch (error) {
