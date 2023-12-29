@@ -17,8 +17,8 @@ try {
   //   username: tools.context.actor
   // });
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`Theee event payload?: ${payload}`);
+  const payload = JSON.stringify(github.context, undefined, 2)
+  console.log(`The entire context: ${payload}`);
 
 
 } catch (error) {
