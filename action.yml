@@ -30,7 +30,6 @@ inputs:
   soft_fail:
     description: If set to `true` the workflow will continue if a branch reference is not found
     required: false
-  default: false
 outputs:
   time: # id of output
     description: 'The time we greeted you'
