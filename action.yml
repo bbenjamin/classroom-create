@@ -8,7 +8,7 @@ inputs:
   github_token:
     description: GitHub token
     required: false
-    default: ${{github.token}}
+    default: ${{secrets.GITHUB_TOKEN}}
   owner:
     description: Owner of the repository. The owner will be deducted from env vars if it is not set
     required: false
