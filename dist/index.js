@@ -47988,6 +47988,16 @@ const tools = new Toolkit();
 const admins = ['bbenjamin', 'XinranCao']
 
 try {
+  const token = core.getInput("github_token", { required: true })
+  const numbers = core.getInput("numbers")
+  const owner = core.getInput("owner")
+  const repository = core.getInput("repository")
+  const branches = core.getInput("branches")
+  const prefix = core.getInput("prefix")
+  const suffix = core.getInput("suffix")
+  const soft_fail = core.getInput("soft_fail")
+
+  const client = github.getOctokit(token)
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
@@ -48009,8 +48019,8 @@ try {
   //   username: tools.context.actor
   // });
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context, undefined, 2)
-  console.log(`The entire github context for ${JSON.stringify(Object.keys(github.context))}: ${payload}`);
+  const payload = JSON.stringify(github, undefined, 2)
+  console.log(`The entire github context forrrr: ${payload}`);
 
 
 } catch (error) {

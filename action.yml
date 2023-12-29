@@ -5,6 +5,32 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  github_token:
+    description: GitHub token
+    required: false
+    default: ${{github.token}}
+  owner:
+    description: Owner of the repository. The owner will be deducted from env vars if it is not set
+    required: false
+  repository:
+    description: The repository containing the branch(es) to be deleted. The repository name will be deducted from env vars if it is not set
+    required: false
+  branches:
+    description: Branches to delete (comma separated)
+    required: false
+  numbers:
+    description: PR numbers whose head branches should be deleted (comma separated)
+    required: false
+  prefix:
+    description: Additional prefix to append to every branch name
+    required: false
+  suffix:
+    description: Additional suffix to append to every branch name
+    required: false
+  soft_fail:
+    description: If set to `true` the workflow will continue if a branch reference is not found
+    required: false
+  default: false
 outputs:
   time: # id of output
     description: 'The time we greeted you'
