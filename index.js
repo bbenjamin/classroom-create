@@ -15,7 +15,7 @@ try {
 
   const isAdmin = admins.some(name => {
       const regex = new RegExp(`\-${name}$`, 'g');
-      return regex.text(github.context.payload.repository['full_name']);
+      return regex.test(github.context.payload.repository['full_name']);
   })
 
   if (!isAdmin) {
