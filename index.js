@@ -18,11 +18,11 @@ try {
   //     return regex.text(github.context.repository['full_name']);
   // })
 
-  if (!isAdmin) {
-    console.info('THIS IS NOT AN ADMIN AND THUS NEEDS RESTRICTING')
-  } else {
-    console.log('THIS WAS SEEN AS ADMIN, IT LETS THING HAPPEN.')
-  }
+  // if (!isAdmin) {
+  //   console.info('THIS IS NOT AN ADMIN AND THUS NEEDS RESTRICTING')
+  // } else {
+  //   console.log('THIS WAS SEEN AS ADMIN, IT LETS THING HAPPEN.')
+  // }
   // const permissionPayload =  tools.github.repos.getCollaboratorPermissionLevel({
   //   ...tools.context.repo,
   //   username: tools.context.actor
