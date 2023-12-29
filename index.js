@@ -17,6 +17,8 @@ try {
   const soft_fail = core.getInput("soft_fail")
 
   const client = github.getOctokit(token)
+  console.log(`THE CLIE ELI ${client.rest.users.getAuthenticated()}`);
+
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
@@ -39,7 +41,7 @@ try {
   // });
   // Get the JSON webhook payload for the event that triggered the workflow
   // const payload = JSON.stringify(github, undefined, 2)
-  const payload = JSON.stringify({token, numbers,owner,repository,branches, prefix, suffix}, undefined, 2)
+  const payload = JSON.stringify(Object.keys(client), undefined, 2)
   console.log(`The entire github context forrrr the varia les: ${payload}`);
 
 
