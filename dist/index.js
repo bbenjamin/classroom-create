@@ -47985,7 +47985,7 @@ const { Toolkit } = __nccwpck_require__(762);
 
 const tools = new Toolkit();
 
-const admins = (/* unused pure expression or super */ null && (['bbenjamin', 'XinranCao']))
+const admins = ['bbenjamin', 'XinranCao']
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -47994,16 +47994,16 @@ try {
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
 
-  // const isAdmin = admins.some(name => {
-  //     const regex = new RegExp(`\-${name}$`, 'g');
-  //     return regex.text(github.context.repository['full_name']);
-  // })
+  const isAdmin = admins.some(name => {
+      const regex = new RegExp(`\-${name}$`, 'g');
+      return regex.text(github.context.payload.repository['full_name']);
+  })
 
-  // if (!isAdmin) {
-  //   console.info('THIS IS NOT AN ADMIN AND THUS NEEDS RESTRICTING')
-  // } else {
-  //   console.log('THIS WAS SEEN AS ADMIN, IT LETS THING HAPPEN.')
-  // }
+  if (!isAdmin) {
+    console.info('THIS IS NOT AN ADMIN AND THUS NEEDS RESTRICTING')
+  } else {
+    console.log('THIS WAS SEEN AS ADMIN, IT LETS THING HAPPEN.')
+  }
   // const permissionPayload =  tools.github.repos.getCollaboratorPermissionLevel({
   //   ...tools.context.repo,
   //   username: tools.context.actor
