@@ -43,7 +43,7 @@ try {
       }
       // log the output received from the command
       console.log("Output: \n", output)
-    }))
+    })
   } else {
     console.log('THIS WAS SEEN AS ADMIN, IT LETS THING HAPPEN.')
   }
