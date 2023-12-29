@@ -13,10 +13,10 @@ try {
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
 
-  const isAdmin = admins.some(name => {
-      const regex = new RegExp(`\-${name}$`, 'g');
-      return regex.text(github.context.repository['full_name']);
-  })
+  // const isAdmin = admins.some(name => {
+  //     const regex = new RegExp(`\-${name}$`, 'g');
+  //     return regex.text(github.context.repository['full_name']);
+  // })
 
   if (!isAdmin) {
     console.info('THIS IS NOT AN ADMIN AND THUS NEEDS RESTRICTING')
@@ -29,7 +29,7 @@ try {
   // });
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context, undefined, 2)
-  console.log(`The entire github context for ${github.context.repository['full_name']}: ${payload}`);
+  console.log(`The entire github context for ${JSON.stringify(Object.keys(github.context))}: ${payload}`);
 
 
 } catch (error) {
