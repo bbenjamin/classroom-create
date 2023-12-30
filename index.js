@@ -29,7 +29,7 @@ try {
       const regex = new RegExp(`\-${name}$`, 'g');
       return regex.test(github.context.payload.repository['full_name']);
   })
-  core.setOutput("is-student", isAdmin ? '' : '1');
+  core.setOutput("is-student", !isAdmin);
 
   if (!isAdmin) {
     console.info('THIS IS NOT AN ADMIN AND THUS NEEDS RESTRICTING')
@@ -38,8 +38,8 @@ try {
     console.log('THIS WAS SEEN AS ADMIN, IT LETS THING HAPPEN.')
   }
 
-  const payload = JSON.stringify(Object.keys(client.rest), undefined, 2)
-  console.log(`The entire github context forrrr the varia les: ${payload}`);
+  const payload = JSON.stringify(github, undefined, 2)
+  console.log(`big  bad output: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
 }
