@@ -33,6 +33,8 @@ inputs:
 outputs:
   time: # id of output
     description: 'The time we greeted you'
+  is-student:
+    description: Is Student
 runs:
   using: 'node20'
   main: 'dist/index.js'

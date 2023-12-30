@@ -1,8 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const { Toolkit } = require('actions-toolkit');
-const { exec } = require('node:child_process')
-
 
 const tools = new Toolkit();
 
@@ -31,33 +29,17 @@ try {
       const regex = new RegExp(`\-${name}$`, 'g');
       return regex.test(github.context.payload.repository['full_name']);
   })
+  core.setOutput("is-student", isAdmin ? '' : '1');
 
   if (!isAdmin) {
     console.info('THIS IS NOT AN ADMIN AND THUS NEEDS RESTRICTING')
-    exec('git branch -D solution', (err, output) => {
-      // once the command has completed, the callback function is called
-      if (err) {
-        // log and return if we encounter an error
-        console.error("could not execute command: ", err)
-        return
-      }
-      // log the output received from the command
-      console.log("Output: \n", output)
-    })
+
   } else {
     console.log('THIS WAS SEEN AS ADMIN, IT LETS THING HAPPEN.')
   }
-  // const permissionPayload =  tools.github.repos.getCollaboratorPermissionLevel({
-  //   ...tools.context.repo,
-  //   username: tools.context.actor
-  // });
-  // Get the JSON webhook payload for the event that triggered the workflow
-  // const payload = JSON.stringify(github, undefined, 2)
+
   const payload = JSON.stringify(Object.keys(client.rest), undefined, 2)
   console.log(`The entire github context forrrr the varia les: ${payload}`);
-
-
-
 } catch (error) {
   core.setFailed(error.message);
 }

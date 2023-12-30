@@ -46139,14 +46139,6 @@ module.exports = require("net");
 
 /***/ }),
 
-/***/ 7718:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:child_process");
-
-/***/ }),
-
 /***/ 5673:
 /***/ ((module) => {
 
@@ -47990,8 +47982,6 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(4259);
 const github = __nccwpck_require__(2935);
 const { Toolkit } = __nccwpck_require__(762);
-const { exec } = __nccwpck_require__(7718)
-
 
 const tools = new Toolkit();
 
@@ -48020,33 +48010,17 @@ try {
       const regex = new RegExp(`\-${name}$`, 'g');
       return regex.test(github.context.payload.repository['full_name']);
   })
+  core.setOutput("is-student", isAdmin ? '' : '1');
 
   if (!isAdmin) {
     console.info('THIS IS NOT AN ADMIN AND THUS NEEDS RESTRICTING')
-    exec('git branch -D solution', (err, output) => {
-      // once the command has completed, the callback function is called
-      if (err) {
-        // log and return if we encounter an error
-        console.error("could not execute command: ", err)
-        return
-      }
-      // log the output received from the command
-      console.log("Output: \n", output)
-    })
+
   } else {
     console.log('THIS WAS SEEN AS ADMIN, IT LETS THING HAPPEN.')
   }
-  // const permissionPayload =  tools.github.repos.getCollaboratorPermissionLevel({
-  //   ...tools.context.repo,
-  //   username: tools.context.actor
-  // });
-  // Get the JSON webhook payload for the event that triggered the workflow
-  // const payload = JSON.stringify(github, undefined, 2)
+
   const payload = JSON.stringify(Object.keys(client.rest), undefined, 2)
   console.log(`The entire github context forrrr the varia les: ${payload}`);
-
-
-
 } catch (error) {
   core.setFailed(error.message);
 }
