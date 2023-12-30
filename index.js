@@ -29,7 +29,7 @@ try {
       const regex = new RegExp(`\-${name}$`, 'g');
       return regex.test(github.context.payload.repository['full_name']);
   })
-  core.setOutput("is-student", !isAdmin);
+  core.setOutput("is-student", (!isAdmin && !github.context.payload.repository.is_template) ? '1' : '0');
 
   if (!isAdmin) {
     console.info('THIS IS NOT AN ADMIN AND THUS NEEDS RESTRICTING')
