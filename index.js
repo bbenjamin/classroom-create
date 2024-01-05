@@ -4,7 +4,7 @@ const { Toolkit } = require('actions-toolkit');
 
 const tools = new Toolkit();
 
-const admins = ['bbenjamin', 'XinranCao', 'supraditya']
+const admins = ['bbenjamin', 'XinranCao', 'supraditya', 'XinranCao\-1']
 
 try {
   const token = core.getInput("github_token", { required: true })
@@ -12,7 +12,6 @@ try {
 
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
-  console.info(`THE NAME WE ARE CHECKING AGAINST IS ${github.context.payload.repository['full_name']}`)
 
   const isAdmin = admins.some(name => {
       const regex = new RegExp(`\-${name}$`, 'g');
