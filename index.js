@@ -4,7 +4,7 @@ const { Toolkit } = require('actions-toolkit');
 
 const tools = new Toolkit();
 
-const admins = ['bbenjamin', 'XinranCao', 'supraditya', 'XinranCao\-1']
+const admins = ['bbenjamin', 'XinranCao', 'supraditya', 'XinranCao\-1', 'tonglj']
 
 try {
   const token = core.getInput("github_token", { required: true })
