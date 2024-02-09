@@ -47985,7 +47985,7 @@ const { Toolkit } = __nccwpck_require__(762);
 
 const tools = new Toolkit();
 
-const admins = ['bbenjamin', 'XinranCao', 'supraditya', 'XinranCao\-1']
+const admins = ['bbenjamin', 'XinranCao', 'supraditya', 'XinranCao\-1', 'tonglj']
 
 try {
   const token = core.getInput("github_token", { required: true })
@@ -47993,9 +47993,10 @@ try {
 
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
-
+  console.info(`Check against ${github.context.payload.repository['full_name']}`);
   const isAdmin = admins.some(name => {
       const regex = new RegExp(`\-${name}$`, 'g');
+      console.info(`Does ${name} do it? ${regex.test(github.context.payload.repository['full_name'])}`)
       return regex.test(github.context.payload.repository['full_name']);
   })
   core.setOutput("is-student", (!isAdmin && !github.context.payload.repository.is_template) ? '1' : '0');
